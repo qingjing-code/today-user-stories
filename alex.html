@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex 的一天 — Today AI</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #f5f7fa;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  color: #1a1a2e;
+  line-height: 1.6;
+  padding: 24px 16px 48px;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 20px 0 8px;
+}
+.header-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 600;
+}
+.header-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+.header-role {
+  font-size: 13px;
+  color: #7a8a9a;
+  margin-bottom: 2px;
+}
+.header-date {
+  font-size: 12px;
+  color: #a0adb8;
+}
+
+/* Card base */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Accent top bars — thin colored line at top of each card */
+.card-alert::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  border-radius: 16px 16px 0 0;
+}
+.card-tasks::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 16px 16px 0 0;
+}
+.card-focus::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  border-radius: 16px 16px 0 0;
+}
+
+/* Card header */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.card-icon {
+  font-size: 18px;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+/* Alert card specifics */
+.alert-main {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.alert-summary {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+.alert-detail {
+  font-size: 13px;
+  color: #6b7280;
+  padding: 10px 12px;
+  background: rgba(251, 191, 36, 0.06);
+  border-radius: 8px;
+  border-left: 3px solid #f59e0b;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+.alert-detail code {
+  font-family: "SF Mono", "Fira Code", monospace;
+  font-size: 12px;
+  background: rgba(0,0,0,0.04);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #92400e;
+}
+
+/* Source badges */
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #f5f7fa;
+  border: 1px solid #eef1f5;
+  color: #5a6a7a;
+  font-weight: 500;
+}
+
+/* Suggestion */
+.suggestion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #5a6a7a;
+  margin-bottom: 14px;
+  padding: 0 2px;
+}
+.suggestion-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.btn-primary {
+  background: #1e293b;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(30, 41, 59, 0.15);
+}
+.btn-secondary {
+  background: #f5f7fa;
+  color: #374151;
+  border: 1px solid #eef1f5;
+}
+
+/* Task card specifics */
+.branch-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-family: "SF Mono", "Fira Code", monospace;
+  background: #f5f7fa;
+  border: 1px solid rgba(59, 130, 246, 0.12);
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: #1e40af;
+  margin-bottom: 16px;
+}
+
+.task-list {
+  list-style: none;
+  margin-bottom: 16px;
+}
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 13px;
+  color: #374151;
+  border-bottom: 1px solid #eef1f5;
+}
+.task-item:last-child {
+  border-bottom: none;
+}
+.task-status {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  margin-top: 1px;
+}
+.status-done {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.status-progress {
+  background: #fef3c7;
+  color: #d97706;
+}
+.status-todo {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+.task-label {
+  flex: 1;
+}
+.task-note {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+/* Progress bar */
+.progress-section {
+  margin-bottom: 16px;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #7a8a9a;
+  margin-bottom: 6px;
+}
+.progress-bar {
+  height: 6px;
+  background: #eef1f5;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  transition: width 0.3s;
+}
+
+/* Focus card specifics */
+.focus-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.focus-stat {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+.focus-stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 2px;
+}
+.focus-stat-label {
+  font-size: 11px;
+  color: #7a8a9a;
+}
+
+.focus-insight {
+  font-size: 13px;
+  color: #374151;
+  padding: 12px 14px;
+  background: #f9fafb;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+.focus-insight-item {
+  padding: 4px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.focus-insight-icon {
+  flex-shrink: 0;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.health-tip {
+  font-size: 12px;
+  color: #dc2626;
+  background: rgba(254, 226, 226, 0.4);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 20px;
+}
+.footer-logo {
+  font-size: 13px;
+  color: #a0adb8;
+  font-weight: 500;
+}
+.footer-tagline {
+  font-size: 11px;
+  color: #c4d0dc;
+  margin-top: 4px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-avatar">A</div>
+    <div class="header-name">Alex 的一天</div>
+    <div class="header-role">后端工程师 · 中型科技公司</div>
+    <div class="header-date">2026年6月4日 周四 · 上午 11:30</div>
+  </div>
+
+  <!-- Card 1: Alert -->
+  <div class="card card-alert">
+    <div class="card-header">
+      <span class="card-icon">⚡</span>
+      <span class="card-title">影响你的变更</span>
+    </div>
+
+    <div class="alert-main">
+      <div class="alert-summary">
+        Today 发现你正在开发的 <strong>/api/export/user</strong> 接口可能受到新隐私合规要求的影响。昨天下午产品和法务在讨论数据脱敏方案，结论是导出字段需要做掩码处理。
+      </div>
+      <div class="alert-detail">
+        <strong>具体影响：</strong>手机号需掩码为 <code>186****8888</code>，邮箱需掩码为 <code>k***@company.com</code>。你当前的字段过滤模块需要新增脱敏逻辑，建议合并前确认最终字段范围。
+      </div>
+    </div>
+
+    <div class="sources">
+      <span class="badge">📄 Confluence · 数据隐私合规 v2</span>
+      <span class="badge">💬 Slack · #product-legal</span>
+      <span class="badge">🔀 GitHub · feature/user-data-export</span>
+    </div>
+
+    <div class="suggestion">
+      <span class="suggestion-icon">💡</span>
+      <span>建议合并前和 PM 确认最终脱敏字段范围</span>
+    </div>
+
+    <button class="btn btn-primary">💬 发消息给 PM 确认</button>
+  </div>
+
+  <!-- Card 2: Tasks -->
+  <div class="card card-tasks">
+    <div class="card-header">
+      <span class="card-icon">📋</span>
+      <span class="card-title">今日任务进度</span>
+    </div>
+
+    <div class="branch-tag">🔀 feature/user-data-export</div>
+
+    <ul class="task-list">
+      <li class="task-item">
+        <span class="task-status status-done">✓</span>
+        <div class="task-label">
+          数据库查询层
+          <div class="task-note">PostgreSQL 多表联查，已通过测试</div>
+        </div>
+      </li>
+      <li class="task-item">
+        <span class="task-status status-done">✓</span>
+        <div class="task-label">
+          基础导出逻辑
+          <div class="task-note">CSV / JSON 双格式，流式输出</div>
+        </div>
+      </li>
+      <li class="task-item">
+        <span class="task-status status-progress">●</span>
+        <div class="task-label">
+          字段过滤模块
+          <div class="task-note" style="color: #d97706;">⚠️ 受隐私合规变更影响，需新增脱敏逻辑</div>
+        </div>
+      </li>
+      <li class="task-item">
+        <span class="task-status status-todo">○</span>
+        <div class="task-label">
+          单元测试
+          <div class="task-note">覆盖率目标 85%+</div>
+        </div>
+      </li>
+      <li class="task-item">
+        <span class="task-status status-todo">○</span>
+        <div class="task-label">
+          接口文档
+          <div class="task-note">Swagger 注解 + README 更新</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="progress-section">
+      <div class="progress-label">
+        <span>整体进度</span>
+        <span>40%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 40%;"></div>
+      </div>
+    </div>
+
+    <div class="suggestion">
+      <span class="suggestion-icon">🎯</span>
+      <span>今日目标：完成字段过滤模块并提交 PR</span>
+    </div>
+
+    <button class="btn btn-secondary">🔗 查看 PR</button>
+  </div>
+
+  <!-- Card 3: Focus -->
+  <div class="card card-focus">
+    <div class="card-header">
+      <span class="card-icon">🧘</span>
+      <span class="card-title">专注状态</span>
+    </div>
+
+    <div class="focus-stats">
+      <div class="focus-stat">
+        <div class="focus-stat-value">2.5h</div>
+        <div class="focus-stat-label">已深度工作</div>
+      </div>
+      <div class="focus-stat">
+        <div class="focus-stat-value">4h</div>
+        <div class="focus-stat-label">今日目标</div>
+      </div>
+    </div>
+
+    <div class="focus-insight">
+      <div class="focus-insight-item">
+        <span class="focus-insight-icon">📅</span>
+        <span>上午 2 场会议已结束，下午暂无会议安排</span>
+      </div>
+      <div class="focus-insight-item">
+        <span class="focus-insight-icon">🟢</span>
+        <span>下午 14:00–17:00 有 <strong>3 小时连续空档</strong>，适合深度编码</span>
+      </div>
+      <div class="focus-insight-item">
+        <span class="focus-insight-icon">🍅</span>
+        <span>建议 14:00 开始，4 个番茄钟可完成字段过滤模块</span>
+      </div>
+    </div>
+
+    <div class="health-tip">
+      <span>🪑</span>
+      <span>上午已连续坐了 90 分钟，起来活动一下吧</span>
+    </div>
+
+    <button class="btn btn-primary">🍅 开始番茄钟</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-logo">Today AI</div>
+    <div class="footer-tagline">An assistant that actually knows you.</div>
+  </div>
+
+</div>
+</body>
+</html>

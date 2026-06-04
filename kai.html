@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kai · Today AI 用户故事</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: #f5f7fa;
+  color: #1a2332;
+  min-height: 100vh;
+  padding: 24px 16px 48px;
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+.header {
+  margin-bottom: 32px;
+  padding: 0 4px;
+}
+.header-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a2332;
+  letter-spacing: -0.5px;
+}
+.header-meta {
+  font-size: 14px;
+  color: #8899a8;
+  margin-top: 6px;
+}
+.header-meta span {
+  margin-right: 12px;
+}
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
+}
+.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a2332;
+  margin-bottom: 4px;
+}
+.card-subtitle {
+  font-size: 13px;
+  color: #a0adb8;
+  margin-bottom: 20px;
+}
+.divider {
+  height: 1px;
+  background: #eef1f5;
+  margin: 16px 0;
+}
+
+/* Card 1: Food */
+.food-rec {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border-left: 3px solid #34a853;
+}
+.food-rec-label {
+  font-size: 11px;
+  color: #34a853;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.food-rec-text {
+  font-size: 15px;
+  color: #2d3a4a;
+  line-height: 1.5;
+}
+.food-reason {
+  font-size: 13px;
+  color: #7a8a9a;
+  margin-top: 8px;
+  padding-left: 12px;
+  border-left: 2px solid #e2e8f0;
+}
+.nutrition-bar-group {
+  margin-top: 8px;
+}
+.nutrition-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.nutrition-label {
+  font-size: 12px;
+  color: #6b7b8f;
+  width: 52px;
+  flex-shrink: 0;
+}
+.nutrition-bar-bg {
+  flex: 1;
+  height: 6px;
+  background: #eef1f5;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 0 10px;
+}
+.nutrition-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+.nutrition-value {
+  font-size: 11px;
+  color: #7a8a9a;
+  width: 36px;
+  text-align: right;
+  flex-shrink: 0;
+}
+.meal-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.meal-toggle-btn {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.meal-toggle-btn.active {
+  background: #34a853;
+  color: #ffffff;
+  font-weight: 600;
+}
+.meal-toggle-btn.inactive {
+  background: #f0f2f5;
+  color: #7a8a9a;
+}
+
+/* Card 2: Body Status */
+.metric-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.metric-box {
+  flex: 1;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.metric-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a2332;
+}
+.metric-unit {
+  font-size: 12px;
+  color: #7a8a9a;
+  font-weight: 400;
+}
+.metric-label {
+  font-size: 11px;
+  color: #7a8a9a;
+  margin-top: 4px;
+}
+.status-tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+.status-good {
+  background: rgba(52, 168, 83, 0.08);
+  color: #2d8a4e;
+}
+.status-warn {
+  background: rgba(234, 167, 0, 0.08);
+  color: #b8860b;
+}
+.advice-box {
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+.advice-title {
+  font-size: 12px;
+  color: #3b7dd8;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.advice-text {
+  font-size: 14px;
+  color: #4a5568;
+  line-height: 1.5;
+}
+.hrv-chart {
+  margin: 12px 0;
+}
+
+/* Card 3: Training */
+.exercise-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #eef1f5;
+}
+.exercise-item:last-child {
+  border-bottom: none;
+}
+.exercise-svg {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  margin-right: 14px;
+}
+.exercise-info {
+  flex: 1;
+}
+.exercise-name {
+  font-size: 15px;
+  color: #1a2332;
+  font-weight: 500;
+}
+.exercise-detail {
+  font-size: 13px;
+  color: #7a8a9a;
+  margin-top: 3px;
+}
+.progress-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #eef1f5;
+}
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.progress-title {
+  font-size: 13px;
+  color: #6b7b8f;
+}
+.progress-count {
+  font-size: 13px;
+  color: #3b7dd8;
+  font-weight: 600;
+}
+.progress-bar-bg {
+  height: 8px;
+  background: #eef1f5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #3b7dd8, #60a5fa);
+}
+.calorie-est {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: #f9fafb;
+  border-radius: 10px;
+}
+.calorie-label {
+  font-size: 13px;
+  color: #7a8a9a;
+}
+.calorie-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e06c2e;
+}
+.calorie-unit {
+  font-size: 12px;
+  color: #7a8a9a;
+  font-weight: 400;
+}
+.training-intensity {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(59, 125, 216, 0.06);
+  color: #3b7dd8;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-name">Kai</div>
+    <div class="header-meta">
+      <span>产品经理</span>
+      <span>2026年6月4日 周四</span>
+    </div>
+  </div>
+
+  <!-- Card 1: 今日食堂推荐 -->
+  <div class="card">
+    <div class="card-icon" style="background: rgba(52, 168, 83, 0.08);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34a853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8h1a4 4 0 010 8h-1"/>
+        <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+        <line x1="6" y1="1" x2="6" y2="4"/>
+        <line x1="10" y1="1" x2="10" y2="4"/>
+        <line x1="14" y1="1" x2="14" y2="4"/>
+      </svg>
+    </div>
+    <div class="card-title">今日食堂推荐</div>
+    <div class="card-subtitle">基于昨日营养缺口 · 已抓取今日菜单</div>
+
+    <div class="meal-toggle" id="mealToggle">
+      <span class="meal-toggle-btn active" onclick="switchMeal('lunch')">午餐</span>
+      <span class="meal-toggle-btn inactive" onclick="switchMeal('dinner')">晚餐</span>
+      <span class="meal-toggle-btn inactive" onclick="switchMeal('takeout')">外卖模式</span>
+    </div>
+
+    <!-- 午餐内容 -->
+    <div class="meal-content" id="meal-lunch">
+      <div class="food-rec">
+        <div class="food-rec-label">推荐搭配</div>
+        <div class="food-rec-text">二楼 · 番茄牛腩饭 + 紫菜蛋花汤 + 清炒西兰花</div>
+      </div>
+      <div class="food-reason">
+        昨日蛋白质摄入仅达标 62%，牛腩饭可补充约 35g 优质蛋白；紫菜蛋花汤补充碘和蛋白质；西兰花补充膳食纤维和维生素 C。
+      </div>
+    </div>
+
+    <!-- 晚餐内容 -->
+    <div class="meal-content" id="meal-dinner" style="display: none;">
+      <div class="food-rec">
+        <div class="food-rec-label">推荐搭配</div>
+        <div class="food-rec-text">一楼 · 清蒸鲈鱼 + 凉拌黄瓜 + 小米粥</div>
+      </div>
+      <div class="food-reason">
+        晚餐建议低脂高蛋白，鲈鱼提供约 28g 蛋白质且脂肪含量低；凉拌黄瓜补充膳食纤维；小米粥易消化，适合训练前 2 小时食用。
+      </div>
+    </div>
+
+    <!-- 外卖模式内容 -->
+    <div class="meal-content" id="meal-takeout" style="display: none;">
+      <div class="food-rec">
+        <div class="food-rec-label">推荐搭配</div>
+        <div class="food-rec-text">沙拉到工位 · 鸡胸肉藜麦碗 + 无糖豆浆</div>
+      </div>
+      <div class="food-reason">
+        外卖优先选低 GI 组合，藜麦碗含约 32g 蛋白质和复合碳水，血糖波动小；无糖豆浆补充植物蛋白，避免午后困倦。
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="font-size: 12px; color: #6b7b8f; margin-bottom: 12px;">今日营养目标进度</div>
+    <div class="nutrition-bar-group">
+      <div class="nutrition-item">
+        <span class="nutrition-label">蛋白质</span>
+        <div class="nutrition-bar-bg">
+          <div class="nutrition-bar-fill" style="width: 38%; background: #34a853;"></div>
+        </div>
+        <span class="nutrition-value">38%</span>
+      </div>
+      <div class="nutrition-item">
+        <span class="nutrition-label">碳水</span>
+        <div class="nutrition-bar-bg">
+          <div class="nutrition-bar-fill" style="width: 45%; background: #3b7dd8;"></div>
+        </div>
+        <span class="nutrition-value">45%</span>
+      </div>
+      <div class="nutrition-item">
+        <span class="nutrition-label">脂肪</span>
+        <div class="nutrition-bar-bg">
+          <div class="nutrition-bar-fill" style="width: 52%; background: #e0a030;"></div>
+        </div>
+        <span class="nutrition-value">52%</span>
+      </div>
+    </div>
+    <div style="font-size: 11px; color: #a0adb8; margin-top: 8px;" id="nutrition-estimate">午餐后预计：蛋白质 72% · 碳水 68% · 脂肪 71%</div>
+  </div>
+
+  <!-- Card 2: 今日身体状态 -->
+  <div class="card">
+    <div class="card-icon" style="background: rgba(59, 125, 216, 0.06);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b7dd8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    <div class="card-title">今日身体状态</div>
+    <div class="card-subtitle">Apple Health · 最近更新 08:32</div>
+
+    <div class="metric-row">
+      <div class="metric-box">
+        <div class="metric-value">52<span class="metric-unit"> ms</span></div>
+        <div class="metric-label">HRV</div>
+        <span class="status-tag status-good">正常</span>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value">6.8<span class="metric-unit"> h</span></div>
+        <div class="metric-label">睡眠时长</div>
+        <span class="status-tag status-warn">略短</span>
+      </div>
+      <div class="metric-box">
+        <div class="metric-value">78<span class="metric-unit"> 分</span></div>
+        <div class="metric-label">睡眠质量</div>
+        <span class="status-tag status-good">良好</span>
+      </div>
+    </div>
+
+    <!-- HRV Weekly Trend Chart -->
+    <div style="font-size: 12px; color: #6b7b8f; margin-bottom: 8px;">本周 HRV 趋势</div>
+    <div class="hrv-chart">
+      <svg width="100%" height="100" viewBox="0 0 360 100" preserveAspectRatio="xMidYMid meet">
+        <!-- Grid lines -->
+        <line x1="40" y1="15" x2="340" y2="15" stroke="#eef1f5" stroke-width="1"/>
+        <line x1="40" y1="40" x2="340" y2="40" stroke="#eef1f5" stroke-width="1"/>
+        <line x1="40" y1="65" x2="340" y2="65" stroke="#eef1f5" stroke-width="1"/>
+        <line x1="40" y1="90" x2="340" y2="90" stroke="#eef1f5" stroke-width="1"/>
+        <!-- Y axis labels -->
+        <text x="8" y="18" font-size="10" fill="#a0adb8">60</text>
+        <text x="8" y="43" font-size="10" fill="#a0adb8">50</text>
+        <text x="8" y="68" font-size="10" fill="#a0adb8">40</text>
+        <text x="8" y="93" font-size="10" fill="#a0adb8">30</text>
+        <!-- X axis labels -->
+        <text x="55" y="100" font-size="9" fill="#a0adb8" text-anchor="middle">周一</text>
+        <text x="105" y="100" font-size="9" fill="#a0adb8" text-anchor="middle">周二</text>
+        <text x="155" y="100" font-size="9" fill="#a0adb8" text-anchor="middle">周三</text>
+        <text x="205" y="100" font-size="9" fill="#a0adb8" text-anchor="middle">周四</text>
+        <text x="255" y="100" font-size="9" fill="#a0adb8" text-anchor="middle">周五</text>
+        <text x="305" y="100" font-size="9" fill="#a0adb8" text-anchor="middle">周六</text>
+        <text x="340" y="100" font-size="9" fill="#a0adb8" text-anchor="middle">周日</text>
+        <!-- HRV line: Mon=45, Tue=48, Wed=42, Thu=52 (today) -->
+        <polyline points="55,52 105,45 155,60 205,35" fill="none" stroke="#3b7dd8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Dots -->
+        <circle cx="55" cy="52" r="3.5" fill="#3b7dd8"/>
+        <circle cx="105" cy="45" r="3.5" fill="#3b7dd8"/>
+        <circle cx="155" cy="60" r="3.5" fill="#3b7dd8"/>
+        <circle cx="205" cy="35" r="4.5" fill="#3b7dd8" stroke="#ffffff" stroke-width="2"/>
+        <!-- Today indicator -->
+        <text x="205" y="27" font-size="9" fill="#3b7dd8" text-anchor="middle" font-weight="600">今日</text>
+        <!-- Dashed future line -->
+        <line x1="205" y1="35" x2="340" y2="35" stroke="#dce3ea" stroke-width="1" stroke-dasharray="4,4"/>
+      </svg>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="advice-box">
+      <div class="advice-title">今日行动建议</div>
+      <div class="advice-text">HRV 恢复至正常区间，身体状态适合中高强度运动。建议今晚安排力量训练，有助于提升本周运动目标完成度。</div>
+    </div>
+
+    <div class="advice-box" style="margin-top: 10px; border-left: 3px solid #e0a030;">
+      <div class="advice-title" style="color: #b8860b;">久坐提醒</div>
+      <div class="advice-text">今日 10:00-16:00 有 4 场连续会议，建议在会议间隙站起来走动 2-3 分钟，每小时至少活动一次。</div>
+    </div>
+  </div>
+
+  <!-- Card 3: 今日训练计划 -->
+  <div class="card">
+    <div class="card-icon" style="background: rgba(224, 108, 46, 0.06);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e06c2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6.5 6.5L17.5 17.5"/>
+        <path d="M7 2l-1.5 4.5L2 7"/>
+        <path d="M17 22l1.5-4.5L22 17"/>
+        <path d="M2 17l4.5 1.5L7 22"/>
+        <path d="M22 7l-4.5-1.5L17 2"/>
+      </svg>
+    </div>
+    <div class="card-title">今日训练计划</div>
+    <div class="card-subtitle">基于 HRV 动态调整 · 力量训练日</div>
+
+    <span class="training-intensity">中高强度 · 力量训练</span>
+
+    <!-- Exercise 1: 深蹲 -->
+    <div class="exercise-item">
+      <div class="exercise-svg">
+        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="#4a5568" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Head -->
+          <circle cx="24" cy="8" r="4"/>
+          <!-- Torso -->
+          <line x1="24" y1="12" x2="22" y2="24"/>
+          <!-- Arms holding barbell -->
+          <line x1="22" y1="16" x2="16" y2="14"/>
+          <line x1="22" y1="16" x2="28" y2="14"/>
+          <!-- Barbell -->
+          <line x1="13" y1="14" x2="31" y2="14" stroke-width="2.5"/>
+          <circle cx="13" cy="14" r="2" fill="#c4d0dc" stroke="#a0aec0"/>
+          <circle cx="31" cy="14" r="2" fill="#c4d0dc" stroke="#a0aec0"/>
+          <!-- Legs in squat position -->
+          <line x1="22" y1="24" x2="18" y2="34"/>
+          <line x1="18" y1="34" x2="16" y2="42"/>
+          <line x1="22" y1="24" x2="28" y2="34"/>
+          <line x1="28" y1="34" x2="30" y2="42"/>
+          <!-- Feet -->
+          <line x1="14" y1="42" x2="18" y2="42"/>
+          <line x1="28" y1="42" x2="32" y2="42"/>
+        </svg>
+      </div>
+      <div class="exercise-info">
+        <div class="exercise-name">杠铃深蹲</div>
+        <div class="exercise-detail">4 组 × 8 次 · 休息 90 秒</div>
+      </div>
+    </div>
+
+    <!-- Exercise 2: 哑铃推胸 -->
+    <div class="exercise-item">
+      <div class="exercise-svg">
+        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="#4a5568" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Head -->
+          <circle cx="12" cy="22" r="3.5"/>
+          <!-- Bench -->
+          <rect x="8" y="26" width="32" height="3" rx="1.5" fill="#eef1f5" stroke="#c4d0dc"/>
+          <!-- Torso on bench -->
+          <line x1="15" y1="24" x2="35" y2="24"/>
+          <!-- Arms pushing up -->
+          <line x1="20" y1="24" x2="20" y2="16"/>
+          <line x1="30" y1="24" x2="30" y2="16"/>
+          <!-- Dumbbells -->
+          <rect x="16" y="13" width="8" height="3" rx="1.5" fill="#c4d0dc" stroke="#a0aec0"/>
+          <rect x="26" y="13" width="8" height="3" rx="1.5" fill="#c4d0dc" stroke="#a0aec0"/>
+          <!-- Legs -->
+          <line x1="35" y1="26" x2="38" y2="34"/>
+          <line x1="38" y1="34" x2="38" y2="42"/>
+          <line x1="35" y1="26" x2="33" y2="34"/>
+          <line x1="33" y1="34" x2="33" y2="42"/>
+        </svg>
+      </div>
+      <div class="exercise-info">
+        <div class="exercise-name">哑铃平板推胸</div>
+        <div class="exercise-detail">4 组 × 10 次 · 休息 75 秒</div>
+      </div>
+    </div>
+
+    <!-- Exercise 3: 坐姿划船 -->
+    <div class="exercise-item">
+      <div class="exercise-svg">
+        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="#4a5568" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Head -->
+          <circle cx="20" cy="10" r="3.5"/>
+          <!-- Torso -->
+          <line x1="20" y1="14" x2="20" y2="28"/>
+          <!-- Seat/bench -->
+          <rect x="14" y="28" width="14" height="3" rx="1.5" fill="#eef1f5" stroke="#c4d0dc"/>
+          <!-- Legs extended forward -->
+          <line x1="20" y1="28" x2="28" y2="32"/>
+          <line x1="28" y1="32" x2="36" y2="32"/>
+          <!-- Foot plate -->
+          <line x1="36" y1="28" x2="36" y2="36" stroke-width="2.5" stroke="#c4d0dc"/>
+          <!-- Arms pulling cable -->
+          <line x1="20" y1="18" x2="28" y2="20"/>
+          <line x1="20" y1="22" x2="28" y2="24"/>
+          <!-- Cable -->
+          <line x1="28" y1="20" x2="40" y2="20" stroke-dasharray="2,2" stroke="#c4d0dc"/>
+          <line x1="28" y1="24" x2="40" y2="24" stroke-dasharray="2,2" stroke="#c4d0dc"/>
+          <!-- Handle -->
+          <rect x="26" y="18" width="3" height="8" rx="1" fill="#c4d0dc" stroke="#a0aec0"/>
+        </svg>
+      </div>
+      <div class="exercise-info">
+        <div class="exercise-name">坐姿划船</div>
+        <div class="exercise-detail">3 组 × 12 次 · 休息 60 秒</div>
+      </div>
+    </div>
+
+    <!-- Exercise 4: 平板支撑 -->
+    <div class="exercise-item">
+      <div class="exercise-svg">
+        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="#4a5568" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Head -->
+          <circle cx="10" cy="22" r="3"/>
+          <!-- Body in plank -->
+          <line x1="13" y1="24" x2="38" y2="24"/>
+          <!-- Arms -->
+          <line x1="13" y1="24" x2="13" y2="30"/>
+          <line x1="10" y1="30" x2="16" y2="30"/>
+          <!-- Core line -->
+          <line x1="13" y1="26" x2="38" y2="26" stroke="#c4d0dc" stroke-width="0.5"/>
+          <!-- Legs -->
+          <line x1="38" y1="24" x2="42" y2="30"/>
+          <!-- Feet -->
+          <line x1="40" y1="30" x2="44" y2="30"/>
+          <!-- Ground reference -->
+          <line x1="6" y1="31" x2="46" y2="31" stroke="#dce3ea" stroke-width="0.5" stroke-dasharray="3,3"/>
+        </svg>
+      </div>
+      <div class="exercise-info">
+        <div class="exercise-name">平板支撑</div>
+        <div class="exercise-detail">3 组 × 45 秒 · 休息 45 秒</div>
+      </div>
+    </div>
+
+    <!-- Weekly Progress -->
+    <div class="progress-section">
+      <div class="progress-header">
+        <span class="progress-title">本周运动进度</span>
+        <span class="progress-count">1 / 2 次 ≥300kcal</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" style="width: 50%;"></div>
+      </div>
+      <div style="font-size: 11px; color: #a0adb8; margin-top: 6px;">周二已完成 1 次（跑步 340kcal），今晚适合完成第 2 次</div>
+    </div>
+
+    <!-- Calorie Estimate -->
+    <div class="calorie-est">
+      <span class="calorie-label">预计消耗</span>
+      <span class="calorie-value">~320<span class="calorie-unit"> kcal</span></span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function switchMeal(type) {
+  // Update toggle buttons
+  var btns = document.querySelectorAll('#mealToggle .meal-toggle-btn');
+  btns.forEach(function(btn) {
+    btn.className = 'meal-toggle-btn inactive';
+  });
+  var index = type === 'lunch' ? 0 : type === 'dinner' ? 1 : 2;
+  btns[index].className = 'meal-toggle-btn active';
+
+  // Switch content panels
+  var panels = document.querySelectorAll('.meal-content');
+  panels.forEach(function(panel) {
+    panel.style.display = 'none';
+  });
+  document.getElementById('meal-' + type).style.display = 'block';
+
+  // Update nutrition estimate text
+  var estimate = document.getElementById('nutrition-estimate');
+  if (type === 'lunch') {
+    estimate.textContent = '午餐后预计：蛋白质 72% · 碳水 68% · 脂肪 71%';
+  } else if (type === 'dinner') {
+    estimate.textContent = '晚餐后预计：蛋白质 89% · 碳水 82% · 脂肪 78%';
+  } else {
+    estimate.textContent = '外卖后预计：蛋白质 74% · 碳水 62% · 脂肪 65%';
+  }
+}
+</script>
+</body>
+</html>

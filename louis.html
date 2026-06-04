@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Today · Louis 的一天</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; background: #f5f5f7; min-height: 100vh; padding: 24px 16px 48px; color: #1d1d1f; -webkit-font-smoothing: antialiased; }
+.btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.snack-used { opacity: 0.3; filter: grayscale(1); }
+</style>
+</head>
+<body>
+<div style="max-width:480px;margin:0 auto;">
+
+  <!-- Header -->
+  <div style="padding:32px 0 24px;text-align:left;">
+    <div style="font-size:14px;color:#86868b;margin-bottom:4px;letter-spacing:0.5px;">Good morning</div>
+    <div style="font-size:28px;font-weight:700;color:#1d1d1f;margin-bottom:2px;">Louis</div>
+    <div style="font-size:14px;color:#86868b;margin-top:4px;">财务顾问 · 3 位客户需要关注</div>
+    <div style="font-size:13px;color:#aeaeb2;margin-top:8px;">2026年6月4日 周四</div>
+  </div>
+
+  <!-- Card 1: 今日客户动态 — 浅蓝灰底色 -->
+  <div style="background:linear-gradient(135deg,#f0f4f8 0%,#e8eef5 100%);border-radius:20px;padding:24px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,0.06),0 0.5px 2px rgba(0,0,0,0.04);border:1px solid rgba(180,200,220,0.2);">
+    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#6b7f99;margin-bottom:8px;">客户关系</div>
+    <div style="font-size:20px;font-weight:700;color:#1d1d1f;margin-bottom:16px;">今日客户动态</div>
+
+    <!-- Client Row 1 -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(255,255,255,0.7);border-radius:12px;margin-bottom:8px;">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1;">
+        <span style="font-size:18px;flex-shrink:0;">🎂</span>
+        <div style="min-width:0;">
+          <div style="font-size:14px;font-weight:600;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">王总 · 生日祝福</div>
+          <div style="font-size:11px;color:#86868b;margin-top:2px;">已起草短信 · 等待发送</div>
+        </div>
+      </div>
+      <button class="btn" style="padding:6px 14px;border-radius:16px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:#1d1d1f;color:#fff;white-space:nowrap;flex-shrink:0;margin-left:10px;transition:all 0.2s ease;">发送</button>
+    </div>
+
+    <!-- Client Row 2 -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(255,255,255,0.7);border-radius:12px;margin-bottom:8px;">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1;">
+        <span style="font-size:18px;flex-shrink:0;">📋</span>
+        <div style="min-width:0;">
+          <div style="font-size:14px;font-weight:600;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">张女士 · 保单扣款提醒</div>
+          <div style="font-size:11px;color:#86868b;margin-top:2px;">6/12 扣款 ¥28,600 · 建信人寿</div>
+        </div>
+      </div>
+      <button class="btn" style="padding:6px 14px;border-radius:16px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:#1d1d1f;color:#fff;white-space:nowrap;flex-shrink:0;margin-left:10px;transition:all 0.2s ease;">提醒</button>
+    </div>
+
+    <!-- Client Row 3 -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(255,255,255,0.7);border-radius:12px;">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1;">
+        <span style="font-size:18px;flex-shrink:0;">💬</span>
+        <div style="min-width:0;">
+          <div style="font-size:14px;font-weight:600;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">李总 · 6周未联系</div>
+          <div style="font-size:11px;color:#86868b;margin-top:2px;">上次：4/23 子女教育金 · 待跟进</div>
+        </div>
+      </div>
+      <button class="btn" style="padding:6px 14px;border-radius:16px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,0.9);color:#1d1d1f;white-space:nowrap;flex-shrink:0;margin-left:10px;border:1px solid #d1d5db;transition:all 0.2s ease;">问候</button>
+    </div>
+  </div>
+
+  <!-- Card 2: 家庭指令中心 — 浅绿底色 -->
+  <div style="background:linear-gradient(135deg,#f0f9f4 0%,#e8f5e9 100%);border-radius:20px;padding:24px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,0.06),0 0.5px 2px rgba(0,0,0,0.04);border:1px solid rgba(129,199,132,0.15);">
+    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#5a8a65;margin-bottom:8px;">家庭</div>
+    <div style="font-size:20px;font-weight:700;color:#1d1d1f;margin-bottom:20px;">家庭指令中心</div>
+
+    <!-- 三餐菜单表格 -->
+    <div style="font-size:13px;font-weight:600;color:#3d6b4a;margin-bottom:10px;">🍽️ 今日三餐菜单</div>
+    <div style="background:rgba(255,255,255,0.75);border-radius:14px;overflow:hidden;margin-bottom:6px;">
+      <!-- Table Header -->
+      <div style="display:grid;grid-template-columns:54px 1fr 1fr;border-bottom:1px solid rgba(0,0,0,0.05);">
+        <div style="padding:10px 12px;font-size:11px;font-weight:600;color:#86868b;background:rgba(0,0,0,0.02);"></div>
+        <div style="padding:10px 12px;font-size:11px;font-weight:600;color:#86868b;background:rgba(0,0,0,0.02);">菜品</div>
+        <div style="padding:10px 12px;font-size:11px;font-weight:600;color:#86868b;background:rgba(0,0,0,0.02);">营养重点</div>
+      </div>
+      <!-- 早餐 -->
+      <div style="display:grid;grid-template-columns:54px 1fr 1fr;border-bottom:1px solid rgba(0,0,0,0.04);">
+        <div style="padding:10px 12px;font-size:13px;font-weight:600;color:#1d1d1f;">早餐</div>
+        <div style="padding:10px 12px;font-size:13px;color:#1d1d1f;">牛奶燕麦粥 + 蒸蛋</div>
+        <div style="padding:10px 12px;font-size:12px;color:#5a8a65;">蛋白质 · 钙</div>
+      </div>
+      <!-- 午餐 -->
+      <div style="display:grid;grid-template-columns:54px 1fr 1fr;border-bottom:1px solid rgba(0,0,0,0.04);">
+        <div style="padding:10px 12px;font-size:13px;font-weight:600;color:#1d1d1f;">午餐</div>
+        <div style="padding:10px 12px;font-size:13px;color:#1d1d1f;">番茄牛腩 + 西兰花 + 紫米饭</div>
+        <div style="padding:10px 12px;font-size:12px;color:#5a8a65;">铁 · 维C · 膳食纤维</div>
+      </div>
+      <!-- 晚餐 -->
+      <div style="display:grid;grid-template-columns:54px 1fr 1fr;">
+        <div style="padding:10px 12px;font-size:13px;font-weight:600;color:#1d1d1f;">晚餐</div>
+        <div style="padding:10px 12px;font-size:13px;color:#1d1d1f;">清蒸鲈鱼 + 南瓜粥 + 山药</div>
+        <div style="padding:10px 12px;font-size:12px;color:#5a8a65;">DHA · 维A · 健脾</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:#86868b;margin-bottom:20px;padding-left:2px;">阿姨已收到采购清单 · 10:15 确认</div>
+
+    <!-- 营养彩虹 — 网格布局 -->
+    <div style="font-size:13px;font-weight:600;color:#3d6b4a;margin-bottom:10px;">🌈 营养彩虹 · 今日蔬菜颜色</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;background:rgba(255,255,255,0.75);border-radius:14px;padding:14px;margin-bottom:6px;">
+      <!-- 绿 -->
+      <div style="text-align:center;">
+        <div style="width:34px;height:34px;border-radius:50%;background:#4caf50;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;font-weight:700;margin:0 auto;">✓</div>
+        <div style="font-size:10px;color:#4caf50;margin-top:4px;font-weight:500;">西兰花</div>
+      </div>
+      <!-- 红 -->
+      <div style="text-align:center;">
+        <div style="width:34px;height:34px;border-radius:50%;background:#e53935;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;font-weight:700;margin:0 auto;">✓</div>
+        <div style="font-size:10px;color:#e53935;margin-top:4px;font-weight:500;">番茄</div>
+      </div>
+      <!-- 橙 -->
+      <div style="text-align:center;">
+        <div style="width:34px;height:34px;border-radius:50%;background:#ff9800;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;font-weight:700;margin:0 auto;">✓</div>
+        <div style="font-size:10px;color:#ff9800;margin-top:4px;font-weight:500;">南瓜</div>
+      </div>
+      <!-- 紫 -->
+      <div style="text-align:center;">
+        <div style="width:34px;height:34px;border-radius:50%;border:2px dashed #9c27b0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#9c27b0;font-weight:600;opacity:0.7;margin:0 auto;">紫</div>
+        <div style="font-size:10px;color:#9c27b0;margin-top:4px;font-weight:500;">待补充</div>
+      </div>
+      <!-- 白 -->
+      <div style="text-align:center;">
+        <div style="width:34px;height:34px;border-radius:50%;background:#e0e0e0;display:flex;align-items:center;justify-content:center;font-size:14px;color:#666;font-weight:700;margin:0 auto;">✓</div>
+        <div style="font-size:10px;color:#666;margin-top:4px;font-weight:500;">山药</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:#86868b;margin-bottom:20px;padding-left:2px;">紫色还没集齐 · 建议晚餐加一份紫甘蓝沙拉</div>
+
+    <!-- 零食额度 — 分区网格 -->
+    <div style="font-size:13px;font-weight:600;color:#3d6b4a;margin-bottom:10px;">🍬 今日零食额度</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <!-- 棒棒糖 -->
+      <div style="background:rgba(255,255,255,0.75);border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-size:12px;font-weight:600;color:#1d1d1f;margin-bottom:8px;">棒棒糖 · 3根/天</div>
+        <div style="display:flex;justify-content:center;gap:4px;">
+          <span class="snack-used" style="font-size:22px;">🍭</span>
+          <span style="font-size:22px;">🍭</span>
+          <span style="font-size:22px;">🍭</span>
+        </div>
+        <div style="font-size:10px;color:#86868b;margin-top:6px;">已吃 1 · 剩余 2</div>
+      </div>
+      <!-- 小饼干 -->
+      <div style="background:rgba(255,255,255,0.75);border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-size:12px;font-weight:600;color:#1d1d1f;margin-bottom:8px;">小饼干 · 5块/天</div>
+        <div style="display:flex;justify-content:center;gap:3px;flex-wrap:wrap;">
+          <span class="snack-used" style="font-size:20px;">🍪</span>
+          <span class="snack-used" style="font-size:20px;">🍪</span>
+          <span class="snack-used" style="font-size:20px;">🍪</span>
+          <span style="font-size:20px;">🍪</span>
+          <span style="font-size:20px;">🍪</span>
+        </div>
+        <div style="font-size:10px;color:#86868b;margin-top:6px;">已吃 3 · 剩余 2</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:#86868b;margin-top:8px;padding-left:2px;">阿姨 14:30 更新</div>
+  </div>
+
+  <!-- Card 3: 女儿今日动态 — 暖粉色底色 -->
+  <div style="background:linear-gradient(135deg,#fef5f0 0%,#fdf0f5 100%);border-radius:20px;padding:24px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,0.06),0 0.5px 2px rgba(0,0,0,0.04);border:1px solid rgba(251,180,160,0.15);">
+    <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#c4868a;margin-bottom:8px;">豆豆的一天</div>
+    <div style="font-size:20px;font-weight:700;color:#3d2c1e;margin-bottom:16px;">女儿今日动态 🧸</div>
+
+    <!-- Energy Bar -->
+    <div style="display:flex;align-items:center;gap:4px;margin-bottom:16px;">
+      <span style="font-size:13px;color:#8b6914;font-weight:600;margin-right:8px;">今日能量</span>
+      <span style="font-size:22px;">☀️</span>
+      <span style="font-size:22px;">☀️</span>
+      <span style="font-size:22px;">☀️</span>
+      <span style="font-size:22px;">☀️</span>
+      <span style="font-size:22px;opacity:0.25;">☀️</span>
+    </div>
+
+    <!-- Quote -->
+    <div style="background:rgba(255,255,255,0.7);border-radius:16px;padding:18px 20px;margin-bottom:16px;">
+      <div style="font-size:16px;line-height:1.6;color:#3d2c1e;font-weight:500;">「今天豆豆说想让爸爸陪她睡觉，还说爸爸讲的恐龙故事最好听 🦕」</div>
+      <div style="font-size:12px;color:#c4868a;margin-top:8px;">— 阿姨 · 晚间反馈 · 20:15</div>
+    </div>
+
+    <!-- Updates -->
+    <div style="margin:16px 0;">
+      <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;">
+        <span style="font-size:18px;margin-top:1px;">😴</span>
+        <span style="font-size:14px;line-height:1.5;color:#3d2c1e;">午睡 1.5 小时，睡得很香，没有中途醒来</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;">
+        <span style="font-size:18px;margin-top:1px;">🎨</span>
+        <span style="font-size:14px;line-height:1.5;color:#3d2c1e;">下午和邻居家妹妹一起画画，画了一幅「爸爸在工作」</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;">
+        <span style="font-size:18px;margin-top:1px;">🥦</span>
+        <span style="font-size:14px;line-height:1.5;color:#3d2c1e;">午饭吃得不错，西兰花全部吃完了（进步！）</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;">
+        <span style="font-size:18px;margin-top:1px;">✋</span>
+        <span style="font-size:14px;line-height:1.5;color:#3d2c1e;">幼儿园老师反馈：今天主动举手回答问题两次</span>
+      </div>
+    </div>
+
+    <!-- Alert -->
+    <div style="background:rgba(255,149,0,0.08);border-radius:12px;padding:14px 16px;margin-top:16px;border-left:3px solid #ff9500;">
+      <div style="font-size:13px;line-height:1.5;color:#6b4e00;margin-bottom:10px;">⚠️ 本周第二次提到「不想去幼儿园」，上次是周一早上。可能值得关注一下原因。</div>
+      <button class="btn" style="display:inline-block;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:#5e4b3b;color:#ffffff;transition:all 0.2s ease;">和 Today 讨论</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center;padding:32px 0 16px;">
+    <div style="font-size:12px;color:#c7c7cc;letter-spacing:0.5px;">Powered by <span style="font-weight:700;color:#aeaeb2;">Today</span></div>
+  </div>
+
+</div>
+</body>
+</html>
